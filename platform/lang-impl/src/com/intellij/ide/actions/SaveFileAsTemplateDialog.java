@@ -13,16 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.intellij.codeInsight.template.impl;
+package com.intellij.ide.actions;
 
-import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.extensions.ExtensionPointName;
-import com.intellij.psi.PsiFile;
+import com.intellij.openapi.options.Configurable;
+import com.intellij.openapi.options.ex.SingleConfigurableEditor;
+import com.intellij.openapi.project.Project;
 import org.jetbrains.annotations.Nullable;
 
-public interface TemplateSubstitutor {
-  ExtensionPointName<TemplateSubstitutor> EP_NAME = ExtensionPointName.create("com.intellij.liveTemplateSubstitutor");
+import javax.swing.*;
+
+/**
+ * @author Dmitry Avdeev
+ */
+public class SaveFileAsTemplateDialog extends SingleConfigurableEditor {
+
+  public SaveFileAsTemplateDialog(@Nullable Project project,
+                                  Configurable configurable) {
+    super(project, configurable, "save.file.as.template.dialog");
+    setTitle("Save File as Template");
+  }
 
   @Nullable
-  TemplateImpl substituteTemplate(final Editor editor, final PsiFile file, int caretOffset, final TemplateImpl template);
+  @Override
+  protected JComponent createNorthPanel() {
+    return super.createNorthPanel();
+  }
 }
